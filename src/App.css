@@ -37,15 +37,24 @@ body::before {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
 }
 
 
 .dice-container {
   display: grid;
   grid-template-columns: repeat(5, 35.84px);
-  grid-template-rows: repeat(2, 35.84px);
+  grid-template-rows: repeat(3, 35.84px);
   gap: 18px;
 }
+
+.dice-container > :nth-child(11) {
+  margin-top: 7.86px;
+  justify-self: center;
+  grid-column: 1 / -1;
+}
+
+
 
 .die {
   background-color: white;
@@ -57,3 +66,27 @@ body::before {
   transition: 0.2s;
   box-shadow: 0 2px 5px #00000026;
 }
+
+.active-button {
+  background-color: #59E391;
+  border: 2px none;
+  border-radius: 3.81px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 5px #00000026;
+}
+
+.roll {
+  background-color:#5035FF;
+  border-style: none;
+  width: 92.16px;
+  height: 35.84px;
+  border-radius: 3.81px;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 16.38px;
+  font-family: "Karla", sans-serif;
+}
+
