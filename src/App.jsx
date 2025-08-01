@@ -17,15 +17,26 @@ function App() {
       const randomNumber = Math.floor(Math.random() * 6) + 1;
       arr.push({
         value: randomNumber,
-        isHeld: true,
+        isHeld: false,
         id: nanoid(),
       });
     }
     return arr;
   }
 
+  function hold(id) {
+    setDice(prevDice => prevDice.map(die =>{
+        return die.id === id ? {...die, isHeld: !die.isHeld} : die
+    }))
+  }
+
   const diceElements = dice.map((die) => (
-    <Die key={die.id} value={die.value} isHeld={die.isHeld} />
+    <Die
+      key={die.id}
+      value={die.value}
+      isHeld={die.isHeld}
+      hold={() => hold(die.id)}
+    />
   ));
 
   return (

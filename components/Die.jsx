@@ -1,15 +1,8 @@
-import { useState } from "react";
-
 function Die(props) {
-  const [isActive, setIsActive] = useState(props.isHeld);
-
-  const toggleActive = () => {
-    setIsActive(!isActive);
-  };
 
   return (
     <>
-      <button className={isActive ? "active-button" : "die"} onClick={toggleActive}>
+      <button className={props.isHeld ? "active-button" : "die"} onClick={props.hold}>
         {props.value}
       </button>
     </>
