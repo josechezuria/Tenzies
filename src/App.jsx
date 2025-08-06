@@ -2,13 +2,28 @@ import "./App.css";
 import Die from "../components/Die";
 import { useState } from "react";
 import { nanoid } from "nanoid";
+import { useWindowSize } from 'react-use'
+import Confetti from "react-confetti";
 
 function App() {
-  const [dice, setDice] = useState(generatedAllNewDice());
+  const [dice, setDice] = useState(() => generatedAllNewDice());
 
-  function rollDice() {
-    setDice(generatedAllNewDice());
-  }
+  const gameWon =
+    dice.every((die) => die.isHeld) &&
+    dice.every((die) => die.value === dice[0].value);
+
+    function rollDice() {
+        if (!gameWon) {
+            setDice(oldDice => oldDice.map(die =>
+                die.isHeld ?
+                    die :
+                    { ...die, value: Math.ceil(Math.random() * 6) }
+            ))
+        } else {
+            setDice(generatedAllNewDice())
+        }
+    }
+
 
   function generatedAllNewDice() {
     const arr = [];
@@ -25,9 +40,11 @@ function App() {
   }
 
   function hold(id) {
-    setDice(prevDice => prevDice.map(die =>{
-        return die.id === id ? {...die, isHeld: !die.isHeld} : die
-    }))
+    setDice((prevDice) =>
+      prevDice.map((die) =>
+        die.id === id ? { ...die, isHeld: !die.isHeld } : die
+      )
+    );
   }
 
   const diceElements = dice.map((die) => (
@@ -39,16 +56,25 @@ function App() {
     />
   ));
 
+  const { width, height } = useWindowSize();
+
   return (
     <main>
+      {gameWon && <Confetti width={width} height={height} />}
+
       <div className="bg-noise"></div>
       <div className="container">
         <div className="outer-square">
           <div className="inner-square">
+            <h1 className="title">Tenzies</h1>
+            <p className="instructions">
+              Roll until all dice are the same. Click each die to freeze it at
+              its current value between rolls.
+            </p>
             <div className="dice-container">
               {diceElements}
               <button className="roll" onClick={rollDice}>
-                Roll
+                {gameWon ? "New Game" : "Roll"}
               </button>
             </div>
           </div>

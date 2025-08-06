@@ -9,19 +9,18 @@ body {
 body::before {
   content: "";
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: url('/noisy.png');
-  opacity: 0.30;
+  background: url("/noisy.png");
+  opacity: 0.3;
   z-index: 0;
   pointer-events: none;
 }
 
-
-
 .outer-square {
-  background-color:#0B2434;
+  background-color: #0b2434;
   width: 360px;
   height: 379px;
   display: flex;
@@ -30,7 +29,7 @@ body::before {
 }
 
 .inner-square {
-  background-color:#F5F5F5;
+  background-color: #f5f5f5;
   width: 320px;
   height: 320px;
   border-radius: 10px;
@@ -39,7 +38,6 @@ body::before {
   align-items: center;
   flex-flow: column;
 }
-
 
 .dice-container {
   display: grid;
@@ -54,8 +52,6 @@ body::before {
   grid-column: 1 / -1;
 }
 
-
-
 .die {
   background-color: white;
   border: 2px none;
@@ -68,7 +64,7 @@ body::before {
 }
 
 .active-button {
-  background-color: #59E391;
+  background-color: #59e391;
   border: 2px none;
   border-radius: 3.81px;
   font-size: 24px;
@@ -79,14 +75,29 @@ body::before {
 }
 
 .roll {
-  background-color:#5035FF;
+  background-color: #5035ff;
   border-style: none;
-  width: 92.16px;
+  white-space: nowrap;
+  width: auto;
+  padding: 6px 21px;
   height: 35.84px;
   border-radius: 3.81px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 700;
   font-size: 16.38px;
   font-family: "Karla", sans-serif;
 }
 
+.title {
+  font-size: 25px;
+  margin: 0;
+}
+
+.instructions {
+  font-size: 13.11px;
+  font-weight: 400;
+  letter-spacing: -3%;
+  color: #4a4e74;
+  margin: 22px;
+  text-align: center;
+}
